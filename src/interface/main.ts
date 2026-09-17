@@ -11,10 +11,13 @@ const inpCategory = document.getElementById(
   const inpDescription = document.getElementById(
         "inp-description",
       ) as HTMLInputElement | null;
+  const inpPrepTime = document.getElementById(
+        "inp-prep-time",
+      ) as HTMLInputElement | null;
 
 const mainRecipeList = new RecipeList();
 
-if (btnAdd && inpName && inpCategory && inpDescription) {
+if (btnAdd && inpName && inpCategory && inpDescription && inpPrepTime) {
   btnAdd.addEventListener("click", () => {
     const recipesErrorContainer = document.getElementById("add-recipes-error");
     const recipesError = document.getElementById("add-recipes-error-msg");
@@ -22,6 +25,7 @@ if (btnAdd && inpName && inpCategory && inpDescription) {
       const newRecipe = new Recipe(inpName.value);
       newRecipe.category = inpCategory.value;
       newRecipe.description = inpDescription.value;
+      newRecipe.prep_time = parseFloat(inpPrepTime.value);
       mainRecipeList.add(newRecipe);
       clearInputs(inpName, inpCategory);
       recipesErrorContainer?.classList.add("d-none");
